@@ -7,14 +7,14 @@
     "storage",
     "tabs",
     "activeTab",
-    "windows",
     "scripting"
   ],
   "host_permissions": [
     "<all_urls>"
   ],
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "background.js",
+    "scripts": ["background.js"]
   },
   "content_scripts": [
     {
@@ -43,7 +43,11 @@
   "browser_specific_settings": {
     "gecko": {
       "id": "autopip@autopip.github.io",
-      "strict_min_version": "109.0"
+      "strict_min_version": "109.0",
+      "data_collection_permissions": {
+        "required": [],
+        "optional": []
+      }
     }
   },
   "default_locale": "en"
