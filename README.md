@@ -14,7 +14,7 @@
 
 ### Userscript (quickest)
 1. Install [Tampermonkey](https://www.tampermonkey.net/) or [Violentmonkey](https://violentmonkey.github.io/)
-2. [Click here to install AutoPiP](https://raw.githubusercontent.com/autopip/autopip/main/userscript/autopip.user.js)
+2. [Click here to install AutoPiP](https://raw.githubusercontent.com/AntoineVassort/autopip/master/userscript/autopip.user.js)
 
 ### Browser Extension
 - **Chrome / Edge / Brave / Opera**: [Chrome Web Store](#) *(coming soon)*
