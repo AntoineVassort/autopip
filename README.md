@@ -43,7 +43,7 @@
 |---------|-----------|-----------|
 | Chrome 92+ | ✅ | ✅ MV3 |
 | Edge 92+ | ✅ | ✅ MV3 |
-| Firefox 140+ | ✅ | ✅ MV3 |
+| Firefox 142+ | ✅ | ✅ MV3 |
 | Brave | ✅ | ✅ MV3 |
 | Opera | ✅ | ✅ MV3 |
 | Safari | ❌ | ❌ |

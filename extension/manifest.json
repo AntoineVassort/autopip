@@ -43,10 +43,7 @@
   "browser_specific_settings": {
     "gecko": {
       "id": "autopip@autopip.github.io",
-      "strict_min_version": "140.0",
-      "data_collection_permissions": {
-        "optional": []
-      }
+      "strict_min_version": "142.0"
     }
   },
   "default_locale": "en"
