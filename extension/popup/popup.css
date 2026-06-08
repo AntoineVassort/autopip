@@ -1,0 +1,188 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 320px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 13px;
+  background: #1a1a2e;
+  color: #e0e0e0;
+  line-height: 1.5;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+header h1 {
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.02em;
+}
+
+main {
+  padding: 8px 0;
+}
+
+section {
+  padding: 10px 16px;
+}
+
+section h2 {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #6c7ab8;
+  margin-bottom: 8px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 6px 0;
+}
+
+.label-text {
+  display: block;
+  color: #e0e0e0;
+}
+
+.label-sub {
+  display: block;
+  font-size: 11px;
+  color: #8888aa;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+/* Toggle Switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+.switch input { opacity: 0; width: 0; height: 0; }
+
+.slider {
+  position: absolute;
+  inset: 0;
+  background: #333355;
+  border-radius: 22px;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+
+.slider::before {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  left: 3px;
+  top: 3px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 0.2s;
+}
+
+.switch input:checked + .slider { background: #4f6ef7; }
+.switch input:checked + .slider::before { transform: translateX(18px); }
+
+/* Textarea */
+textarea {
+  width: 100%;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 6px;
+  color: #e0e0e0;
+  padding: 8px;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 12px;
+  resize: vertical;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: #4f6ef7;
+}
+
+/* Bouton */
+button {
+  margin-top: 8px;
+  padding: 6px 12px;
+  background: rgba(79, 110, 247, 0.15);
+  border: 1px solid rgba(79, 110, 247, 0.4);
+  border-radius: 6px;
+  color: #8ba4ff;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+button:hover { background: rgba(79, 110, 247, 0.25); }
+
+.btn-primary {
+  width: 100%;
+  padding: 8px 12px;
+  background: rgba(79, 110, 247, 0.25);
+  border-color: rgba(79, 110, 247, 0.6);
+  color: #aabfff;
+  font-size: 13px;
+}
+
+.btn-primary:hover { background: rgba(79, 110, 247, 0.4); }
+
+/* Range */
+input[type="range"] {
+  width: 100px;
+  flex-shrink: 0;
+  accent-color: #4f6ef7;
+}
+
+.hint {
+  font-size: 11px;
+  color: #8888aa;
+  margin-bottom: 8px;
+}
+
+code {
+  font-family: monospace;
+  background: rgba(255,255,255,0.08);
+  padding: 1px 4px;
+  border-radius: 3px;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  font-size: 11px;
+  color: #8888aa;
+}
+
+footer a {
+  color: #4f6ef7;
+  text-decoration: none;
+}
+
+footer a:hover { text-decoration: underline; }
+
+#status-text { font-style: italic; }

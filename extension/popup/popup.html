@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AutoPiP Settings</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <img src="../icons/icon32.png" alt="AutoPiP logo" width="24" height="24">
+    <h1>AutoPiP</h1>
+  </header>
+
+  <main>
+    <section class="row">
+      <label for="toggle-enabled">
+        <span class="label-text">Enable AutoPiP</span>
+        <span class="label-sub">Activate PiP on tab switch</span>
+      </label>
+      <label class="switch">
+        <input type="checkbox" id="toggle-enabled">
+        <span class="slider"></span>
+      </label>
+    </section>
+
+    <hr>
+
+    <!-- Brave / fingerprinting-protection browsers -->
+    <section id="section-brave">
+      <h2>Brave / strict mode</h2>
+      <p class="hint">Brave blocks automatic tab-switch detection. Click below while a video is playing to enter PiP manually.</p>
+      <button id="btn-force-pip" class="btn-primary">▶ Enter PiP on current tab</button>
+    </section>
+
+    <hr>
+
+    <section>
+      <h2>Excluded sites</h2>
+      <p class="hint">One hostname per line (e.g. <code>meet.google.com</code>)</p>
+      <textarea id="excluded-sites" rows="5" placeholder="meet.google.com&#10;zoom.us"></textarea>
+      <button id="btn-add-current">+ Exclude current site</button>
+    </section>
+
+    <hr>
+
+    <section>
+      <h2>Advanced</h2>
+
+      <div class="row">
+        <label for="debounce-delay">
+          <span class="label-text">Activation delay</span>
+          <span class="label-sub" id="debounce-display">300 ms</span>
+        </label>
+        <input type="range" id="debounce-delay" min="0" max="2000" step="100" value="300">
+      </div>
+
+      <div class="row">
+        <label for="min-video-area">
+          <span class="label-text">Min. video size</span>
+          <span class="label-sub" id="area-display">200 × 200 px</span>
+        </label>
+        <input type="range" id="min-video-area" min="10000" max="200000" step="5000" value="40000">
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span id="status-text">Ready</span>
+    <a href="https://github.com/autopip/autopip" target="_blank" rel="noopener">GitHub</a>
+  </footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>

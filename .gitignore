@@ -1,0 +1,29 @@
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# Build artifacts
+dist/
+*.zip
+*.crx
+*.xpi
+
+# Editor
+.vscode/
+.idea/
+*.suo
+*.user
+
+# Misc
+*.log
+.env
+
+# Claude Code internal files
+CLAUDE.md
+.claude/

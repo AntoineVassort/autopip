@@ -1,0 +1,32 @@
+{
+  "extensionName": {
+    "message": "AutoPiP — Universal Picture-in-Picture"
+  },
+  "extensionDescription": {
+    "message": "Automatic Picture-in-Picture when switching tabs. Works on any HTML5 video site."
+  },
+  "enable": {
+    "message": "Enable AutoPiP"
+  },
+  "disable": {
+    "message": "Disable AutoPiP"
+  },
+  "excludedSites": {
+    "message": "Excluded sites"
+  },
+  "excludeCurrentSite": {
+    "message": "Exclude current site"
+  },
+  "activationDelay": {
+    "message": "Activation delay"
+  },
+  "minVideoSize": {
+    "message": "Min. video size"
+  },
+  "saved": {
+    "message": "Saved ✓"
+  },
+  "ready": {
+    "message": "Ready"
+  }
+}

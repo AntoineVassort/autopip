@@ -1,0 +1,32 @@
+{
+  "extensionName": {
+    "message": "AutoPiP — Picture-in-Picture Universel"
+  },
+  "extensionDescription": {
+    "message": "Picture-in-Picture automatique lors du changement d'onglet. Fonctionne sur tout site avec vidéo HTML5."
+  },
+  "enable": {
+    "message": "Activer AutoPiP"
+  },
+  "disable": {
+    "message": "Désactiver AutoPiP"
+  },
+  "excludedSites": {
+    "message": "Sites exclus"
+  },
+  "excludeCurrentSite": {
+    "message": "Exclure ce site"
+  },
+  "activationDelay": {
+    "message": "Délai d'activation"
+  },
+  "minVideoSize": {
+    "message": "Taille vidéo min."
+  },
+  "saved": {
+    "message": "Enregistré ✓"
+  },
+  "ready": {
+    "message": "Prêt"
+  }
+}
