@@ -43,10 +43,14 @@
 |---------|-----------|-----------|
 | Chrome 92+ | ✅ | ✅ MV3 |
 | Edge 92+ | ✅ | ✅ MV3 |
-| Firefox 101+ | ✅ | ✅ MV3 |
+| Firefox 109+ | ✅ | ✅ MV3 |
 | Brave | ✅ | ✅ MV3 |
 | Opera | ✅ | ✅ MV3 |
 | Safari | ❌ | ❌ |
+
+## Privacy Policy
+
+AutoPiP collects no data whatsoever. All processing happens locally in your browser. No network requests are made, no analytics, no tracking.
 
 ## Contributing
 
