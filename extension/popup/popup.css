@@ -11,14 +11,27 @@ body {
   background: #1a1a2e;
   color: #e0e0e0;
   line-height: 1.5;
+  border: 1px solid rgba(79, 110, 247, 0.2);
 }
 
 header {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   padding: 14px 16px;
   border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.header-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #4f6ef7, #7c3aed);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(79, 110, 247, 0.4);
 }
 
 header h1 {
@@ -185,4 +198,12 @@ footer a {
 
 footer a:hover { text-decoration: underline; }
 
-#status-text { font-style: italic; }
+#status-text {
+  font-style: italic;
+  color: #4f6ef7;
+}
+
+#debounce-display,
+#area-display {
+  color: #4f6ef7;
+}
