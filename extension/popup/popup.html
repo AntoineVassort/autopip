@@ -14,13 +14,15 @@
       </svg>
     </div>
     <h1>AutoPiP</h1>
+    <div id="status-badge" class="badge">—</div>
   </header>
 
   <main>
+    <!-- Enable -->
     <section class="row">
       <label for="toggle-enabled">
         <span class="label-text">Enable AutoPiP</span>
-        <span class="label-sub">Activate PiP on tab switch</span>
+        <span class="label-sub">Auto PiP on tab switch</span>
       </label>
       <label class="switch">
         <input type="checkbox" id="toggle-enabled">
@@ -28,29 +30,48 @@
       </label>
     </section>
 
-    <hr>
+    <!-- Mute tab -->
+    <section class="row">
+      <label for="toggle-mute">
+        <span class="label-text">Mute tab in PiP</span>
+        <span class="label-sub">Silences tab audio while PiP is open</span>
+      </label>
+      <label class="switch">
+        <input type="checkbox" id="toggle-mute">
+        <span class="slider"></span>
+      </label>
+    </section>
 
-    <!-- Brave / fingerprinting-protection browsers -->
-    <section id="section-brave">
-      <h2>Brave / strict mode</h2>
-      <p class="hint">Brave blocks automatic tab-switch detection. Click below while a video is playing to enter PiP manually.</p>
-      <button id="btn-force-pip" class="btn-primary">▶ Enter PiP on current tab</button>
+    <!-- Keyboard shortcut -->
+    <section class="shortcut-row">
+      <span class="label-text">Toggle PiP</span>
+      <div class="shortcut-keys">
+        <kbd>Alt</kbd><span class="key-sep">+</span><kbd>P</kbd>
+        <a id="shortcut-link" href="#" class="shortcut-change">change</a>
+      </div>
     </section>
 
     <hr>
 
+    <!-- Sites -->
     <section>
-      <h2>Excluded sites</h2>
-      <p class="hint">One hostname per line (e.g. <code>meet.google.com</code>)</p>
-      <textarea id="excluded-sites" rows="5" placeholder="meet.google.com&#10;zoom.us"></textarea>
-      <button id="btn-add-current">+ Exclude current site</button>
+      <div class="sites-header">
+        <h2 id="sites-label">Excluded sites</h2>
+        <div class="mode-pills">
+          <button id="btn-blacklist" class="pill active">Blacklist</button>
+          <button id="btn-whitelist" class="pill">Whitelist</button>
+        </div>
+      </div>
+      <p class="hint" id="sites-hint">AutoPiP is disabled on these sites.</p>
+      <textarea id="sites-textarea" rows="4" placeholder="meet.google.com&#10;zoom.us"></textarea>
+      <button id="btn-add-current">+ Add current site</button>
     </section>
 
     <hr>
 
+    <!-- Advanced -->
     <section>
       <h2>Advanced</h2>
-
       <div class="row">
         <label for="debounce-delay">
           <span class="label-text">Activation delay</span>
@@ -58,7 +79,6 @@
         </label>
         <input type="range" id="debounce-delay" min="0" max="2000" step="100" value="300">
       </div>
-
       <div class="row">
         <label for="min-video-area">
           <span class="label-text">Min. video size</span>
@@ -66,6 +86,15 @@
         </label>
         <input type="range" id="min-video-area" min="10000" max="200000" step="5000" value="40000">
       </div>
+    </section>
+
+    <hr>
+
+    <!-- Manual / Brave -->
+    <section>
+      <h2>Manual control</h2>
+      <p class="hint">For Brave or sites blocking auto-detection.</p>
+      <button id="btn-force-pip" class="btn-primary">▶ Enter PiP on current tab</button>
     </section>
   </main>
 

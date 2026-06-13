@@ -3,13 +3,16 @@
 let config = {
   enabled: true,
   excludedSites: [],
+  allowedSites: [],
+  whitelistMode: false,
   minVideoArea: 40000,
   debounceDelay: 300,
+  muteTabs: false,
 };
 
 let currentVideo = null;
 let pipActive = false;
-let autoVideo = null; // video currently assigned autoPictureInPicture=true
+let autoVideo = null;
 let initialized = false;
 
 // ─── CONFIG ───────────────────────────────────────────────────────────────────
@@ -17,7 +20,7 @@ let initialized = false;
 async function loadConfig() {
   return new Promise((resolve) => {
     chrome.storage.sync.get(
-      { enabled: true, excludedSites: [], minVideoArea: 40000, debounceDelay: 300 },
+      { enabled: true, excludedSites: [], allowedSites: [], whitelistMode: false, minVideoArea: 40000, debounceDelay: 300, muteTabs: false },
       (result) => { config = result; resolve(); }
     );
   });
@@ -35,7 +38,7 @@ chrome.storage.onChanged.addListener((changes) => {
   }
 });
 
-// ─── LOGIQUE PiP ──────────────────────────────────────────────────────────────
+// ─── PIP LOGIC ────────────────────────────────────────────────────────────────
 
 function videoArea(v) {
   const rect = v.getBoundingClientRect();
@@ -61,8 +64,6 @@ function findMainVideo() {
   return pool.reduce((best, v) => videoArea(v) > videoArea(best) ? v : best);
 }
 
-// Assign autoPictureInPicture to the given video (and remove it from the previous one).
-// The browser then handles PiP automatically when the tab is hidden — no user gesture needed.
 function assignAutoPip(video) {
   if (autoVideo && autoVideo !== video) {
     autoVideo.autoPictureInPicture = false;
@@ -96,25 +97,24 @@ async function exitPip() {
   } catch (_) {}
 }
 
-// ─── TRACKING DE L'ÉTAT PiP ──────────────────────────────────────────────────
-// Covers both our manual enterPip() calls and browser-triggered autoPictureInPicture
+// ─── PIP STATE TRACKING ──────────────────────────────────────────────────────
 
 document.addEventListener('enterpictureinpicture', (e) => {
   pipActive = true;
   currentVideo = e.target;
+  chrome.runtime.sendMessage({ type: 'PIP_ENTERED' }).catch(() => {});
 }, true);
 
 document.addEventListener('leavepictureinpicture', () => {
   pipActive = false;
   currentVideo = null;
+  chrome.runtime.sendMessage({ type: 'PIP_LEFT' }).catch(() => {});
 }, true);
 
-// ─── MESSAGES DU BACKGROUND ───────────────────────────────────────────────────
+// ─── MESSAGES ─────────────────────────────────────────────────────────────────
 
 chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
   if (message.type === 'TAB_HIDDEN') {
-    // autoPictureInPicture handles this natively; manual call is a fallback
-    // for browsers that don't support it or when user activation is available
     if (config.enabled && !pipActive) {
       const video = findMainVideo();
       if (video) enterPip(video);
@@ -123,6 +123,14 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
   }
   if (message.type === 'TAB_VISIBLE') {
     exitPip();
+    sendResponse({ ok: true });
+  }
+  if (message.type === 'TOGGLE_PIP') {
+    if (pipActive) exitPip();
+    else {
+      const video = findMainVideo();
+      if (video) enterPip(video);
+    }
     sendResponse({ ok: true });
   }
   if (message.type === 'GET_STATUS') {
@@ -149,18 +157,21 @@ async function init() {
   await loadConfig();
 
   const host = window.location.hostname;
-  if (config.excludedSites.some(site => host.includes(site))) return;
+
+  if (config.whitelistMode) {
+    if (config.allowedSites.length > 0 && !config.allowedSites.some(site => host.includes(site))) return;
+  } else {
+    if (config.excludedSites.some(site => host.includes(site))) return;
+  }
+
   if (!document.pictureInPictureEnabled) return;
 
-  // Set autoPictureInPicture on whatever video is already present
   refreshAutoPip();
 
-  // Re-assign when a new video starts playing (SPA navigation, late-loading players)
   document.addEventListener('play', (e) => {
     if (e.target.tagName === 'VIDEO') refreshAutoPip();
   }, true);
 
-  // Fallback for browsers where visibilitychange is not blocked
   document.addEventListener('visibilitychange', () => {
     if (!config.enabled) return;
     if (document.hidden) {
@@ -171,7 +182,6 @@ async function init() {
     }
   });
 
-  // Update autoPip assignment when video changes during SPA navigation
   const observer = new MutationObserver(() => {
     if (!pipActive) refreshAutoPip();
     else {

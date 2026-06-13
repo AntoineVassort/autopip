@@ -14,11 +14,13 @@ body {
   border: 1px solid rgba(79, 110, 247, 0.2);
 }
 
+/* ─── HEADER ─────────────────────────────────────────────────────────────── */
+
 header {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 14px 16px;
+  padding: 12px 16px;
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
@@ -41,21 +43,45 @@ header h1 {
   letter-spacing: 0.02em;
 }
 
-main {
-  padding: 8px 0;
-}
-
-section {
-  padding: 10px 16px;
-}
-
-section h2 {
-  font-size: 11px;
+/* Status badge */
+.badge {
+  margin-left: auto;
+  padding: 2px 9px;
+  border-radius: 10px;
+  font-size: 10px;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #6c7ab8;
-  margin-bottom: 8px;
+  letter-spacing: 0.03em;
+  background: rgba(255,255,255,0.06);
+  color: #888;
+  white-space: nowrap;
+  transition: background 0.2s, color 0.2s;
+}
+
+.badge.pip-active {
+  background: rgba(239, 83, 80, 0.18);
+  color: #ff6b6b;
+  animation: pulse 1.8s ease-in-out infinite;
+}
+
+.badge.video-found {
+  background: rgba(102, 187, 106, 0.18);
+  color: #66bb6a;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* ─── LAYOUT ─────────────────────────────────────────────────────────────── */
+
+main { padding: 6px 0; }
+
+section { padding: 8px 16px; }
+
+hr {
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.06);
 }
 
 .row {
@@ -63,26 +89,23 @@ section h2 {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  padding: 6px 0;
+  padding: 5px 0;
 }
 
-.label-text {
-  display: block;
-  color: #e0e0e0;
+section h2 {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: #5a6aaa;
+  margin-bottom: 8px;
 }
 
-.label-sub {
-  display: block;
-  font-size: 11px;
-  color: #8888aa;
-}
+.label-text { display: block; color: #e0e0e0; }
+.label-sub  { display: block; font-size: 11px; color: #7777aa; }
 
-hr {
-  border: none;
-  border-top: 1px solid rgba(255,255,255,0.06);
-}
+/* ─── TOGGLE SWITCH ──────────────────────────────────────────────────────── */
 
-/* Toggle Switch */
 .switch {
   position: relative;
   display: inline-block;
@@ -96,7 +119,7 @@ hr {
 .slider {
   position: absolute;
   inset: 0;
-  background: #333355;
+  background: #2a2a4a;
   border-radius: 22px;
   transition: background 0.2s;
   cursor: pointer;
@@ -117,7 +140,87 @@ hr {
 .switch input:checked + .slider { background: #4f6ef7; }
 .switch input:checked + .slider::before { transform: translateX(18px); }
 
-/* Textarea */
+/* ─── SHORTCUT ROW ───────────────────────────────────────────────────────── */
+
+.shortcut-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 16px;
+}
+
+.shortcut-keys {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+kbd {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 4px;
+  padding: 2px 7px;
+  font-family: monospace;
+  font-size: 11px;
+  color: #ccc;
+}
+
+.key-sep {
+  font-size: 11px;
+  color: #555;
+}
+
+.shortcut-change {
+  font-size: 10px;
+  color: #4f6ef7;
+  text-decoration: none;
+  margin-left: 6px;
+  opacity: 0.7;
+}
+.shortcut-change:hover { opacity: 1; }
+
+/* ─── SITES SECTION ──────────────────────────────────────────────────────── */
+
+.sites-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.sites-header h2 { margin-bottom: 0; }
+
+.mode-pills {
+  display: flex;
+  gap: 4px;
+}
+
+.pill {
+  margin: 0;
+  padding: 2px 10px;
+  font-size: 11px;
+  font-weight: 500;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #666;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.pill.active {
+  background: rgba(79, 110, 247, 0.22);
+  border-color: rgba(79, 110, 247, 0.5);
+  color: #8ba4ff;
+}
+
+.pill:hover:not(.active) {
+  background: rgba(255,255,255,0.09);
+  color: #aaa;
+}
+
+/* ─── TEXTAREA ───────────────────────────────────────────────────────────── */
+
 textarea {
   width: 100%;
   background: rgba(255,255,255,0.04);
@@ -135,12 +238,13 @@ textarea:focus {
   border-color: #4f6ef7;
 }
 
-/* Bouton */
+/* ─── BUTTONS ────────────────────────────────────────────────────────────── */
+
 button {
   margin-top: 8px;
   padding: 6px 12px;
-  background: rgba(79, 110, 247, 0.15);
-  border: 1px solid rgba(79, 110, 247, 0.4);
+  background: rgba(79, 110, 247, 0.12);
+  border: 1px solid rgba(79, 110, 247, 0.35);
   border-radius: 6px;
   color: #8ba4ff;
   font-size: 12px;
@@ -148,29 +252,32 @@ button {
   transition: background 0.15s;
 }
 
-button:hover { background: rgba(79, 110, 247, 0.25); }
+button:hover { background: rgba(79, 110, 247, 0.22); }
 
 .btn-primary {
   width: 100%;
   padding: 8px 12px;
-  background: rgba(79, 110, 247, 0.25);
-  border-color: rgba(79, 110, 247, 0.6);
+  background: rgba(79, 110, 247, 0.22);
+  border-color: rgba(79, 110, 247, 0.55);
   color: #aabfff;
   font-size: 13px;
 }
 
-.btn-primary:hover { background: rgba(79, 110, 247, 0.4); }
+.btn-primary:hover { background: rgba(79, 110, 247, 0.38); }
 
-/* Range */
+/* ─── RANGE ──────────────────────────────────────────────────────────────── */
+
 input[type="range"] {
   width: 100px;
   flex-shrink: 0;
   accent-color: #4f6ef7;
 }
 
+/* ─── MISC ───────────────────────────────────────────────────────────────── */
+
 .hint {
   font-size: 11px;
-  color: #8888aa;
+  color: #7777aa;
   margin-bottom: 8px;
 }
 
@@ -185,10 +292,10 @@ footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 16px;
+  padding: 9px 16px;
   border-top: 1px solid rgba(255,255,255,0.06);
   font-size: 11px;
-  color: #8888aa;
+  color: #7777aa;
 }
 
 footer a {
@@ -198,10 +305,7 @@ footer a {
 
 footer a:hover { text-decoration: underline; }
 
-#status-text {
-  font-style: italic;
-  color: #4f6ef7;
-}
+#status-text { font-style: italic; color: #4f6ef7; }
 
 #debounce-display,
 #area-display {

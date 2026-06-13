@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "AutoPiP — Universal Picture-in-Picture",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Automatic Picture-in-Picture when switching tabs. Works on any HTML5 video site.",
   "permissions": [
     "storage",
@@ -50,5 +50,14 @@
       }
     }
   },
-  "default_locale": "en"
+  "default_locale": "en",
+  "commands": {
+    "toggle-pip": {
+      "suggested_key": {
+        "default": "Alt+P",
+        "mac": "Alt+P"
+      },
+      "description": "Toggle Picture-in-Picture"
+    }
+  }
 }
